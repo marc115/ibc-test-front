@@ -1,8 +1,20 @@
 import { Field, Form, Formik, ErrorMessage } from "formik"
-import { formValidationSchema, initialValues, onSubmit } from "../loginFormSchema"
+import { FormValues, formValidationSchema, initialValues } from "../loginFormSchema"
 import { formikConstants } from "../../../constants/formik-constants"
+import { useLoginStore } from "../store/login.store";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
+    const login = useLoginStore((state) => state.login)
+    const navigate = useNavigate();
+
+    const onSubmit = async (values: FormValues) => {
+        const result = await login(values.email, values.password);
+        if (result) {
+            navigate('/dashboard')
+        }
+    };
+
     return (
         <div className="flex flex-col w-full min-h-screen md:bg-login bg-contain bg-no-repeat bg-bottom items-end justify-center">
             <div className="md:w-1/2 w-full h-screen p-10">

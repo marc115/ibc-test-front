@@ -1,8 +1,8 @@
 import { Convert, User } from "../models/User";
-
 // Function to fetch the user and return null on failure
 export const authLogin = async (email: string, password: string): Promise<{ user: User | null, status: number }> => {
-    const url = 'https://localhost:3000/auth/login'
+    const url = 'http://localhost:3000/auth/login'
+    console.log(email, password)
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -11,11 +11,10 @@ export const authLogin = async (email: string, password: string): Promise<{ user
             },
             body: JSON.stringify({ email, password })
         });
-
         // Return user data if the response is OK, otherwise return null
         if (response.ok) {
             const data = await response.json()
-            const user = Convert.toUser(data);
+            const user = Convert.toUser(JSON.stringify(data));
             return { user: user, status: response.status };
 
         } else {
