@@ -3,6 +3,7 @@ import { FormValues, formValidationSchema, initialValues } from "../loginFormSch
 import { formikConstants } from "../../../constants/formik-constants"
 import { useLoginStore } from "../store/login.store";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 export const LoginPage = () => {
     const login = useLoginStore((state) => state.login)
@@ -26,7 +27,7 @@ export const LoginPage = () => {
                                 <img src="src/images/logo.png" className="w-72 h-36 my-10 m-auto" alt="Descriptive alt text" />
 
                                 <div className="flex flex-col gap-y-3">
-                                    <label>Ingresar el correo electronico que te envió tu institución a tu correo</label>
+                                    <label>Ingresar el correo electrónico que te envió tu institución a tu correo</label>
                                     <div className="flex flex-col gap-y-1">
                                         <Field
                                             name="email"
@@ -58,12 +59,9 @@ export const LoginPage = () => {
                                     </div>
                                 </div>
 
-                                <button type="submit" className="bg-blue-900 text-center rounded-lg w-full text-white py-4 px-5
-                                disabled:bg-blue-300"
-                                disabled={isSubmitting}
-                                >
-                                    Ingresar a la página
-                                </button>
+                                <Button type="submit" className="" disabled={isSubmitting}>
+                                    Ingresar a la plataforma
+                                </Button>
                             </div>
                         </Form>
                     )}
