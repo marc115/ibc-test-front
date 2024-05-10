@@ -9,7 +9,17 @@ interface Props {
 
 export const MenuItem = ({ item }: Props) => {
     return (
-        <Link to={item.name}
+        item.children
+        ? (
+            <NavigationMenuTrigger key={item.name}>
+                <NavigationMenuContent>
+                    <NavigationMenuLink>patata</NavigationMenuLink>
+                    <NavigationMenuLink>patata</NavigationMenuLink>
+                </NavigationMenuContent>
+            </NavigationMenuTrigger>
+        )
+        : (
+            <Link to={item.name} key={item.name}
             className="group inline-flex h-9 w-max items-center justify-center rounded-md
                         px-4 py-2 font-medium transition-colors hover:bg-secondary/10 text-white 
                         disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 
@@ -18,6 +28,7 @@ export const MenuItem = ({ item }: Props) => {
                         dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50">
             {item.name}
         </Link>
+        )
     )
 }
 

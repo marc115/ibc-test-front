@@ -45,7 +45,7 @@ export default function Navbar() {
             <NavigationMenu className="hidden lg:flex">
                 <NavigationMenuList className="lg:flex-row lg:flex">
                     {navItems.map((item) => (
-                        <NavigationMenuItem>
+                        <NavigationMenuItem key={item.name}>
                             <Link to={item.path}
                                 className={navStyles.navitem}>
                                 {item.name}
