@@ -1,72 +1,83 @@
-import { Field, Form, Formik, ErrorMessage } from "formik"
-import { FormValues, formValidationSchema, initialValues } from "../loginFormSchema"
-import { formikConstants } from "../../../constants/formik-constants"
+import { z } from "zod"
+import { formSchema, } from "../loginFormSchema"
 import { useLoginStore } from "../store/login.store";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import { Button } from "@/components/ui/button";
+import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, Form } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Toaster } from "sonner";
 
 export const LoginPage = () => {
     const login = useLoginStore((state) => state.login)
     const navigate = useNavigate();
 
-    const onSubmit = async (values: FormValues) => {
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            email: "",
+            password: "",
+        },
+    })
+
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
         const result = await login(values.email, values.password);
         if (result) {
-            navigate('/dashboard')
+            navigate('/welcome')
         }
     };
 
     return (
         <div className="flex flex-col w-full min-h-screen md:bg-login bg-contain bg-no-repeat bg-bottom items-end justify-center">
             <div className="md:w-1/2 w-full h-screen p-10">
-                <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={formValidationSchema}>
-                    {({ isSubmitting }) => (
-                        <Form>
-                            <div className="flex flex-col justify-centers gap-y-4">
+                <Form {...form}>
+                    <img src="src/images/logo.png" className="w-72 h-36 my-10 m-auto" alt="Descriptive alt text" />
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Correo</FormLabel>
+                                    <FormControl>
+                                        <Input type="email" {...field} />
+                                    </FormControl>
+                                    <FormDescription>
+                                        Ingresar el correo electrónico que te envío tu institución a tu correo
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
 
-                                <img src="src/images/logo.png" className="w-72 h-36 my-10 m-auto" alt="Descriptive alt text" />
+                        <FormField
+                            control={form.control}
+                            name="password"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Contraseña</FormLabel>
+                                    <FormControl>
+                                        <Input type="password" {...field} />
+                                    </FormControl>
+                                    <FormDescription>
+                                        Ingresar la contraseña que te envió tu institución a tu correo
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
 
-                                <div className="flex flex-col gap-y-3">
-                                    <label>Ingresar el correo electrónico que te envió tu institución a tu correo</label>
-                                    <div className="flex flex-col gap-y-1">
-                                        <Field
-                                            name="email"
-                                            className="w-full py-3 px-5 rounded-lg border"
-                                            placeholder="Correo electrónico"
-                                        />
-                                        <ErrorMessage
-                                            name="email"
-                                            className={formikConstants.errorMessageStyles}
-                                            component="span"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col gap-y-3">
-                                    <label>Ingresar la contraseña que te envió tu institución a tu correo</label>
-                                    <div className="flex flex-col gap-y-1">
-                                        <Field
-                                            name="password"
-                                            type="password"
-                                            className="w-full py-3 px-5 rounded-lg border"
-                                            placeholder="Correo electrónico"
-                                        />
-                                        <ErrorMessage
-                                            name="password"
-                                            className={formikConstants.errorMessageStyles}
-                                            component="span"
-                                        />
-                                    </div>
-                                </div>
-
-                                <Button type="submit" className="" disabled={isSubmitting}>
-                                    Ingresar a la plataforma
-                                </Button>
-                            </div>
-                        </Form>
-                    )}
-                </Formik>
+                        <Button className="w-full" type="submit" disabled={form.formState.isSubmitting}>
+                            Ingresar a la plataforma
+                        </Button>
+                    </form>
+                </Form>
             </div>
-        </div>
+            <Toaster />
+        </div >
     )
 }
+
+

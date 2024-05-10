@@ -2,7 +2,7 @@
 export const mapErrorMessage = (status: number): string => {
     switch (status) {
         case 401:
-            return "Acceso no autorizado. Por favor inicie sesión.";
+            return "Las credenciales no son válidas";
         case 403:
             return "Acceso restringido. No tiene los roles para esta acción"
         case 404:
