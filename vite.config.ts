@@ -16,5 +16,8 @@ export default defineConfig(({ mode }) => {
         "@": path.resolve(__dirname, "./src"),
       },
     },
+    exclude: [
+      '@radix-ui/react-collapsible'
+    ]
   }
 })
