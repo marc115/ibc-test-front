@@ -1,97 +1,101 @@
-import {
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuIndicator,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    NavigationMenuTrigger,
-    NavigationMenuViewport,
-} from "@/components/ui/navigation-menu"
-import { ListItem } from "../ui/nav-list-item"
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
-
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from "@nextui-org/navbar";
+import { useState } from "react";
+import { User } from "@nextui-org/user";
 
 interface Props {
     children: React.ReactNode
 }
 
 export const PlatformLayout = ({ children }: Props) => {
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const menuItems = [
+        "Profile",
+        "Dashboard",
+        "Activity",
+        "Analytics",
+        "System",
+        "Deployments",
+        "My Settings",
+        "Team Settings",
+        "Help & Feedback",
+        "Log Out",
+    ];
+
     return (
         <>
-            <header className="flex flex-row px-5 py-4 bg-primary">
-                <NavigationMenu className="">
-                    <NavigationMenuList>
-                        <NavigationMenuItem>
-                            <NavigationMenuTrigger>Programa</NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <ul className="grid gap-3 p-3 md:w-[100px] lg:w-[200px]">
-                                    <ListItem href="#" title="Docs" />
-                                    <ListItem href="#" title="Docs" />
-                                </ul>
-                            </NavigationMenuContent>
-                        </NavigationMenuItem>
+            <Navbar
+                isBordered
+                isMenuOpen={isMenuOpen}
+                onMenuOpenChange={setIsMenuOpen}
+                // className="bg-blue-400 text-white"
+            >
+                <NavbarContent className="sm:hidden text-white" justify="start">
+                    <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
+                </NavbarContent>
 
-                        <NavigationMenuItem>
-                            <NavigationMenuTrigger>Laboratorios</NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <ul className="grid gap-3 p-3 md:w-[400px] lg:w-[500px]">
-                                    <ListItem href="#" title="Docs" />
-                                </ul>
-                            </NavigationMenuContent>
-                        </NavigationMenuItem>
+                <NavbarContent className="sm:hidden pr-3" justify="center">
+                    <NavbarBrand>
+                        {/* <AcmeLogo /> */}
+                        <img src="src/images/logo.png" className="w-72 h-36 my-10 m-auto" alt="Descriptive alt text" />
+                    </NavbarBrand>
+                </NavbarContent>
 
-                        <NavigationMenuItem>
-                            <NavigationMenuTrigger>Simuladores</NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <ul className="grid gap-3 p-3 md:w-[400px] lg:w-[500px]">
-                                    <ListItem href="#" title="Docs" />
-                                </ul>
-                            </NavigationMenuContent>
-                        </NavigationMenuItem>
+                <NavbarContent className="hidden sm:flex gap-4" justify="center">
+                    <NavbarBrand>
+                        {/* <AcmeLogo /> */}
+                        <img src="src/images/logo.png" className="w-10 h-10 my-10 m-auto" alt="Descriptive alt text" />
+                    </NavbarBrand>
+                    <NavbarItem>
+                        <a color="foreground" href="#">
+                            Features
+                        </a>
+                    </NavbarItem>
+                    <NavbarItem isActive>
+                        <a href="#" aria-current="page">
+                            Customers
+                        </a>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <a color="foreground" href="#">
+                            Integrations
+                        </a>
+                    </NavbarItem>
+                </NavbarContent>
 
-                        <NavigationMenuItem>
-                            <NavigationMenuTrigger>Tu Progreso</NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <ul className="grid gap-3 p-3 md:w-[400px] lg:w-[500px]">
-                                    <ListItem href="#" title="Docs" />
-                                </ul>
-                            </NavigationMenuContent>
-                        </NavigationMenuItem>
+                <NavbarContent justify="end">
+                    <NavbarItem className="hidden lg:flex">
+                        <User
+                            name="Jane Doe"
+                            avatarProps={{
+                                src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+                                isBordered: true
+                            }}
+                        />
+                    </NavbarItem>
+                </NavbarContent>
 
-                        <NavigationMenuItem>
-                            <NavigationMenuTrigger>Optimus</NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <ul className="grid gap-3 p-3 md:w-[400px] lg:w-[500px]">
-                                    <ListItem href="#" title="Docs" />
-                                </ul>
-                            </NavigationMenuContent>
-                        </NavigationMenuItem>
-
-                        <NavigationMenuItem>
-                            <NavigationMenuTrigger>Conversaciones Interactivas</NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <ul className="grid gap-3 p-3 md:w-[400px] lg:w-[500px]">
-                                    <ListItem href="#" title="Docs" />
-                                </ul>
-                            </NavigationMenuContent>
-                        </NavigationMenuItem>
-
-                        <NavigationMenuItem>
-                            <NavigationMenuTrigger>Consultas</NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <ul className="grid gap-3 p-3 md:w-[400px] lg:w-[500px]">
-                                    <ListItem href="#" title="Docs" />
-                                </ul>
-                            </NavigationMenuContent>
-                        </NavigationMenuItem>
-                    </NavigationMenuList>
-                </NavigationMenu>
-                    
-            </header>
+                <NavbarMenu>
+                    {menuItems.map((item, index) => (
+                        <NavbarMenuItem key={`${item}-${index}`}>
+                            <a
+                                className="w-full"
+                                color={
+                                    index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
+                                }
+                                href="#"
+                            // size="lg"
+                            >
+                                {item}
+                            </a>
+                        </NavbarMenuItem>
+                    ))}
+                </NavbarMenu>
+            </Navbar>
             <div className="p-5">
                 {children}
-                
+
             </div>
         </>
     )
