@@ -4,11 +4,17 @@ import { useState } from "react"
 import { Button } from "../../ui/button"
 import { ChevronsUpDown } from "lucide-react"
 import { ScrollArea } from "../../ui/scroll-area"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
 
 export const SideBar = () => {
   return (
 
-    <div className="flex flex-col gap-y-4 p-8 w-50 h-screen border-r">
+    <div className="flex flex-col gap-y-4 p-8 w-1/4 max-w-[20%] h-screen border-r">
+      <div className="w-full px-3">
+        <AspectRatio ratio={16 / 9}>
+          <img src="src/images/logo.png" alt="logo" className="rounded-md object-cover" />
+        </AspectRatio>
+      </div>
       <UserItem />
       <ScrollArea >
         <div className="flex flex-col gap-y-2 font-semibold">
@@ -89,7 +95,7 @@ const SideBarItemCollapsible = ({ name, path, children }: CollapsibleProps) => {
       <Collapsible
         open={isOpen}
         onOpenChange={setIsOpen}
-        className="w-[350px] space-y-2"
+        className="w-full space-y-2"
       >
         <div className="flex flex-row gap-x-3 items-center">
           <SideBarItem name={name} path={path} />

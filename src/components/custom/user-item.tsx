@@ -7,10 +7,10 @@ export default function UserItem() {
 
     return <div className="flex items-center justify-between gap-2 border rounded-[8px] p-2">
         <div className="avatar rounded-full min-h-10 min-w-10 bg-emerald-500 text-white font-[700] flex items-center justify-center">
-            <p>GD</p>
+            <p>{`${Array.from(user?.names ?? '')[0]}`}{`${Array.from(user?.lastName ?? '')[0]}`}</p>
         </div>
-        <div className="grow">
-            <p className="text-[16px] font-bold">{`${user?.names} ${user?.lastName}`}</p>
+        <div className="truncate">
+            <p className="md:text-[16px] font-bold text-sm">{`${user?.names} ${user?.lastName}`}</p>
             <p className="text-[12px] text-neutral-500">{`${user?.email}`}</p>
         </div>
 

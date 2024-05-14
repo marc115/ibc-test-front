@@ -17,7 +17,8 @@ export default defineConfig(({ mode }) => {
       },
     },
     exclude: [
-      '@radix-ui/react-collapsible'
+      '@radix-ui/react-collapsible',
+      '@radix-ui/aspect-ratio'
     ]
   }
 })
