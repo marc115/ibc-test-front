@@ -7,7 +7,7 @@ interface SidebarItem {
 export const navbarItems: SidebarItem[] = [
     {
         name: 'Programa',
-        path: 'guide',
+        path: 'guide', 
     },
     {
         name: 'Laboratorios',

@@ -20,6 +20,7 @@ module.exports = {
       //my stuff
       fontFamily: {
         geist: ['Geist Variable'],
+        familjen: ['Familjen Grotesk']
       },
       backgroundImage: {
         'login': 'url("src/images/elear.jpg")'
