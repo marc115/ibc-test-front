@@ -1,5 +1,5 @@
 import { z } from "zod"
-import {formConstants} from '../../constants/form-constants'
+import {formConstants} from '../../../constants/form-constants'
 
 export const formSchema = z.object({
   email: z.string().email(formConstants.emailErrorMessage),

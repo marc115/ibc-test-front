@@ -1,8 +1,9 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import { LoginPage } from "../modules"
 import { PrivateRouter } from "./PrivateRouter"
 import { PublicRouter } from "./PublicRouter"
 import { PlatformRouter } from "./PlatformRouter"
+
+import { LoginPage } from "@/modules/login"
 
 export const AppRouter = () => {
     return (

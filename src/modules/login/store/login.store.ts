@@ -48,6 +48,6 @@ export const useLoginStore = create<LoginStore>((set) => ({
 
     logout: () => {
         localStorage.removeItem('user');
-        set({logged: false, user: undefined})
+        set({ logged: false, user: undefined })
     }
 }))

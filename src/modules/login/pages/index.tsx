@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { formSchema, } from "../loginFormSchema"
+import { formSchema, } from "../helpers/loginFormSchema"
 import { useLoginStore } from "../store/login.store";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
