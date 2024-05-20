@@ -6,7 +6,7 @@ export default function UserItem() {
     const user = useLoginStore((state) => state.user)
     const logout = useLoginStore((state) => state.logout)
 
-    return <div className="bg-white shadow flex items-center justify-between gap-2 border rounded-[8px] p-2 ">
+    return <div className="bg-white shadow flex items-center justify-between gap-2 border rounded-[8px] p-2">
         <Avatar>
             <AvatarImage src="https://github.com/marc115.png" alt="@shadcn" />
             <AvatarFallback className="bg-orange-300">
@@ -15,7 +15,7 @@ export default function UserItem() {
             </AvatarFallback>
         </Avatar>
         <div className="">
-            <p className="md:text-[15px] font-bold text-sm line-clamp-2 text-ellipsis overflow-hidden   ">{`${user?.names} ${user?.lastName}`}</p>
+            <p className="md:text-[15px] font-bold text-sm line-clamp-2">{`${user?.names} ${user?.lastName}`}</p>
             <p className="text-[12px] text-neutral-500">{`${user?.email}`}</p>
         </div>
 

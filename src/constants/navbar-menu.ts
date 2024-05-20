@@ -1,10 +1,10 @@
-interface SidebarItem {
+interface NavbarItem {
     name: string,
     path: string,
-    children?: SidebarItem[]
+    children?: NavbarItem[]
 }
 
-export const navbarItems: SidebarItem[] = [
+export const navbarItems: NavbarItem[] = [
     {
         name: 'Programa',
         path: 'guide', 

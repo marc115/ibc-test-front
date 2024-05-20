@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Earth, MenuIcon, Moon } from "lucide-react"
+import { Earth, MenuIcon, } from "lucide-react"
 
 import { navbarItems } from "@/constants/navbar-menu"
 import UserItem from "../sidebar/user-item"
@@ -26,7 +26,6 @@ export const TopBar = () => {
                                 </a>
                             ))
                         }
-                    <span><Moon /> </span>
                     </nav>
                 </SheetContent>
             </Sheet>
