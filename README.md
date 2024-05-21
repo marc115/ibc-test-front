@@ -1,30 +1,28 @@
-# React + TypeScript + Vite
+# IBC Actualizado
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto usa React 18 como framework principal para el front-end. Las principales librerías son:
 
-Currently, two official plugins are available:
+* react-hook-form para manejar el estado de los formularios
+* Tailwind para todo el CSS.
+* Algunos componentes de shadcn.
+* Algunos íconos de lucide-react.
+* react-router-dom como enrutador.
+* zod para validación de formularios.
+* Zustand como manejador de estados principal.
+* non.geist para la fuente principal de la plataforma
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Cómo correr el proyecto
 
-## Expanding the ESLint configuration
+1. Clonar el backend y correrlo. El front-end depende del backend para su ejecución. El repositorio del backend tiene su propio README similar a este, donde se explica cómo ejecutarlo.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. Instalar los módulos de node.
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+3. Ejecutarlo en local
+
+```
+npm run dev
+```

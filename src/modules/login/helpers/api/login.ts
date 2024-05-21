@@ -1,4 +1,4 @@
-import { Convert, User } from "../models/User";
+import { Convert, User } from "../../models/User";
 // Function to fetch the user and return null on failure
 export const authLogin = async (email: string, password: string): Promise<{ user: User | undefined, status: number }> => {
     const url = `${process.env.API_URL}/auth/login`

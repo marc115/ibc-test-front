@@ -1,33 +1,14 @@
-import { z } from "zod"
-import { formSchema, } from "../helpers/login-form-schema"
-import { useLoginStore } from "../store/login.store";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-
 import { Button } from "@/components/ui/button";
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Toaster } from "sonner";
+import { onLoginFormSubmit, useLoginForm } from "../helpers/login-form";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
-    const login = useLoginStore((state) => state.login)
-    const navigate = useNavigate();
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            email: "",
-            password: "",
-        },
-    })
-
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        const result = await login(values.email, values.password);
-        if (result) {
-            navigate('/welcome')
-        }
-    };
+    const form = useLoginForm();
+    const onSubmit = onLoginFormSubmit(useNavigate());
 
     return (
         <div className="flex flex-col w-full min-h-screen md:bg-login bg-contain bg-no-repeat bg-bottom items-end justify-center">

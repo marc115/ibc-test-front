@@ -1,6 +1,6 @@
 import { create } from "zustand"
 import { User } from "../models/User"
-import { authLogin } from "../helpers/login";
+import { authLogin } from "../helpers/api/login";
 import { mapErrorMessage } from "../../../util/map-error-message";
 import { toast } from "sonner";
 
