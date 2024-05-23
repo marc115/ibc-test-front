@@ -1,14 +1,17 @@
-import {MessagesSquare } from "lucide-react"
-import { PlatformLayout } from "@/components/layouts/PlatformLayout"
+import { MessagesSquare } from "lucide-react"
+import { QuestionItem } from "../components/question-item"
+import { frequentQuestions } from "@/constants/faq"
 
 export const HelpPage = () => {
+  const questions = frequentQuestions;
   return (
-    <PlatformLayout>
-      <div className="flex flex-col p-8">
-        <div className="text-blue-500">
-          <h1 className="title"><MessagesSquare /> Preguntas Frecuentes</h1>
-        </div>
-      </div>
-    </PlatformLayout>
+    <div className="p-8">
+        <h1 className="title flex flex-row items-center"><MessagesSquare className="mr-2" />Preguntas Frecuentes</h1>
+        {
+          questions.map((item, index) => (
+            <QuestionItem key={index} {...item} questionNumber={index + 1} />
+          ))
+        }
+    </div>
   )
 }

@@ -21,8 +21,8 @@ export const TopBar = () => {
                     <UserItem />
                         {
                             navbarItems.map((item) => (
-                                <a key={item.name} className="text-lg font-medium hover:text-gray-600" href={item.path}>
-                                    {item.name}
+                                <a key={item.name} className="flex flex-row gap-x-2 text-lg font-medium hover:text-gray-600" href={item.path}>
+                                    <span className="flex-shrink-0">{item.icon}</span> {item.name}
                                 </a>
                             ))
                         }

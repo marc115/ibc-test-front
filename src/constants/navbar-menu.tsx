@@ -1,17 +1,23 @@
+import { BarChart, CircleHelp, Dumbbell, FlaskConical, Home, MessageSquare, SparkleIcon } from "lucide-react"
+
+
 interface NavbarItem {
     name: string,
     path: string,
+    icon?: React.ReactNode,
     children?: NavbarItem[]
 }
 
 export const navbarItems: NavbarItem[] = [
     {
         name: 'Programa',
-        path: 'guide', 
+        path: 'guide',
+        icon: <Home />
     },
     {
         name: 'Laboratorios',
         path: '#',
+        icon: <FlaskConical />,
         children: [
             {
                 name: 'Web prácticas',
@@ -30,6 +36,7 @@ export const navbarItems: NavbarItem[] = [
     {
         name: 'Simuladores',
         path: '#',
+        icon: <Dumbbell />,
         children: [
             {
                 name: 'Gramática',
@@ -48,6 +55,7 @@ export const navbarItems: NavbarItem[] = [
     {
         name: 'Tu Progreso',
         path: '#',
+        icon: <BarChart />,
         children: [
             {
                 name: 'Exámenes',
@@ -61,15 +69,18 @@ export const navbarItems: NavbarItem[] = [
     },
     {
         name: 'Optimus',
-        path: '#'
+        path: '#',
+        icon: <SparkleIcon />
     },
     {
         name: 'Conversaciones interactivas',
-        path: '#'
+        path: '#',
+        icon: <MessageSquare />
     },
     {
         name: 'Consultas',
         path: '#',
+        icon: <CircleHelp />,
         children: [
             {
                 name: 'Buzón de consultas',

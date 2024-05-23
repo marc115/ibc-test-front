@@ -21,8 +21,8 @@ export const SideBar = () => {
             {
               navbarItems.map((item) => (
                 item.children
-                  ? <SideBarItemCollapsible key={item.name} name={item.name} path={item.path} children={item.children} />
-                  : <SideBarItem key={item.name} name={item.name} path={item.name} />
+                  ? <SideBarItemCollapsible {...item} />
+                  : <SideBarItem key={item.name} name={item.name} icon={item.icon} path={item.path} />
               ))
             }
           </div>
