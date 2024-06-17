@@ -1,9 +1,10 @@
 import { z } from "zod"
-import { formConstants } from '../../../constants/form-constants'
-import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useLoginStore } from "../store/login.store"
+import { useForm } from "react-hook-form"
 import { NavigateFunction } from "react-router-dom"
+
+import { formConstants } from '../../../constants/form-constants'
+import { useLoginStore } from "../store/login.store"
 
 const formSchema = z.object({
   email: z.string().email(formConstants.emailErrorMessage),

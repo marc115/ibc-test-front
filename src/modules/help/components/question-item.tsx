@@ -11,7 +11,6 @@ export const QuestionItem = ({ questionNumber, question, answer }: Props) => {
         {questionNumber}
       </div>
 
-
       <div className="flex-grow">
         <h1 className="subtitle">{question}</h1>
         <p className="paragraph">{answer}</p>
